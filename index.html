@@ -19,24 +19,16 @@
     <!-- HEADER / NAVBAR -->
     <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
         <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-            
-            <!-- Kiri: Tombol Bar Navigasi & Logo -->
             <div class="flex items-center space-x-2.5">
-                <button onclick="toggleMenu()" class="p-2 bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200/60 rounded-xl text-slate-700 transition-all shadow-sm active:scale-95">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
+                <button onclick="toggleMenu()" class="p-2 bg-slate-100 hover:bg-slate-200 border border-slate-200/60 rounded-xl text-slate-700 transition shadow-sm active:scale-95">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
                 </button>
                 <a href="#" onclick="showCatalog(); return false;" class="flex items-center space-x-2 group">
-                    <img src="logo.png" alt="Luneva Logo" class="w-9 h-9 rounded-lg shadow-sm object-contain bg-white border border-slate-100/80 group-hover:scale-105 transition-transform">
-                    <span class="font-serif text-xl font-semibold tracking-wider text-slate-900">
-                        LUNÉVA<span class="text-[#B45309]">.</span>
-                    </span>
+                    <img src="logo.png" alt="Luneva Logo" class="w-9 h-9 rounded-lg shadow-sm object-contain bg-white border border-slate-100 group-hover:scale-105 transition">
+                    <span class="font-serif text-xl font-semibold tracking-wider text-slate-900">LUNÉVA<span class="text-[#B45309]">.</span></span>
                 </a>
             </div>
-            
-            <!-- Kanan: Tombol Keranjang -->
-            <button id="cart-btn-icon" onclick="toggleCart()" class="relative p-2 bg-slate-100/80 hover:bg-slate-200/80 border border-slate-200/60 rounded-xl text-slate-700 transition-all duration-300 shadow-sm active:scale-95">
+            <button id="cart-btn-icon" onclick="toggleCart()" class="relative p-2 bg-slate-100 hover:bg-slate-200 border border-slate-200/60 rounded-xl text-slate-700 transition shadow-sm active:scale-95">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                 <span id="cart-count" class="absolute -top-1 -right-1 bg-[#B45309] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-md">0</span>
             </button>
@@ -44,39 +36,21 @@
     </header>
 
     <!-- SIDEBAR MENU -->
-    <div id="nav-menu" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 ease-in-out flex justify-start">
-        <div id="nav-sidebar" class="w-80 max-w-[85vw] bg-white h-full p-6 flex flex-col justify-between shadow-[10px_0_40px_rgba(0,0,0,0.08)] border-r border-slate-100 transform -translate-x-full transition-transform duration-300 ease-in-out">
+    <div id="nav-menu" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 flex justify-start">
+        <div id="nav-sidebar" class="w-80 max-w-[85vw] bg-white h-full p-6 flex flex-col justify-between shadow-2xl border-r border-slate-100 transform -translate-x-full transition-transform duration-300">
             <div>
                 <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-100">
                     <span class="font-serif font-bold text-lg text-slate-900">Navigasi Menu</span>
                     <button onclick="toggleMenu()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-bold hover:bg-slate-200 transition">✕</button>
                 </div>
-                
                 <div class="space-y-3">
                     <h4 class="font-serif font-semibold text-[11px] text-[#B45309] mb-2 uppercase tracking-widest">Kategori Pilihan</h4>
-                    
-                    <button onclick="selectMenuCategory('all')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100/80 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex items-center justify-between group">
-                        <span>Semua Produk</span>
-                        <svg class="w-4 h-4 text-[#B45309] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                    
-                    <button onclick="selectMenuCategory('wedding')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100/80 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex items-center justify-between group">
-                        <span>Undangan Pernikahan</span>
-                        <svg class="w-4 h-4 text-[#B45309] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                    
-                    <button onclick="selectMenuCategory('greeting')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100/80 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex items-center justify-between group">
-                        <span>Kartu Ucapan Digital</span>
-                        <svg class="w-4 h-4 text-[#B45309] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                    
-                    <button onclick="selectMenuCategory('custom')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100/80 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition shadow-[0_2px_8px_rgba(0,0,0,0.02)] flex items-center justify-between group">
-                        <span>Custom Desain Khusus</span>
-                        <svg class="w-4 h-4 text-[#B45309] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
-                    </button>
+                    <button onclick="selectMenuCategory('all')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Semua Produk</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                    <button onclick="selectMenuCategory('wedding')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Undangan Pernikahan</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                    <button onclick="selectMenuCategory('greeting')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Kartu Ucapan Digital</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                    <button onclick="selectMenuCategory('custom')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Custom Desain Khusus</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
                 </div>
             </div>
-            
             <div class="border-t border-slate-100 pt-4">
                 <p class="text-[11px] text-slate-500 mb-2 font-medium">Butuh bantuan custom desain?</p>
                 <a href="https://wa.me/6281234567890" target="_blank" class="block text-center py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-md">Chat WhatsApp</a>
@@ -84,10 +58,8 @@
         </div>
     </div>
 
-    <!-- KONTEN UTAMA: SECTION KATALOG -->
+    <!-- KONTEN UTAMA: KATALOG -->
     <main id="catalog-section" class="py-5 max-w-5xl mx-auto px-4 transition-all duration-300">
-        
-        <!-- Bar Navigasi / Filter Geser (Slider) -->
         <div class="mb-5">
             <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1 px-1 max-w-xl mx-auto justify-start sm:justify-center">
                 <button onclick="filterCategory('all', this)" id="btn-all" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition shadow-sm">Semua Produk</button>
@@ -96,25 +68,21 @@
                 <button onclick="filterCategory('custom', this)" id="btn-custom" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Custom Desain</button>
             </div>
         </div>
-
-        <!-- Grid Katalog Produk -->
-        <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5">
-            <!-- Render via JavaScript -->
-        </div>
+        <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5"></div>
     </main>
 
     <!-- SECTION DETAIL PRODUK -->
-    <section id="detail-section" class="hidden py-6 max-w-xl mx-auto px-4 transform opacity-0 translate-y-3 transition-all duration-300 ease-out">
-        <button onclick="showCatalog()" class="mb-4 inline-flex items-center space-x-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200/80 px-3.5 py-2 rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow transition-all group">
-            <svg class="w-4 h-4 text-[#B45309] transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+    <section id="detail-section" class="hidden py-6 max-w-xl mx-auto px-4 transform opacity-0 translate-y-3 transition-all duration-300">
+        <button onclick="showCatalog()" class="mb-4 inline-flex items-center space-x-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200 px-3.5 py-2 rounded-xl shadow-sm transition group">
+            <svg class="w-4 h-4 text-[#B45309] transition group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
             <span>Kembali ke Katalog</span>
         </button>
-        <div id="detail-content" class="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-[0_10px_30px_rgba(0,0,0,0.04)]"></div>
+        <div id="detail-content" class="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-sm"></div>
     </section>
 
     <!-- MODAL KERANJANG -->
-    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 ease-in-out flex justify-end">
-        <div id="cart-drawer" class="w-full max-w-sm bg-white h-full p-6 flex flex-col justify-between shadow-[-10px_0_40px_rgba(0,0,0,0.08)] border-l border-slate-100 transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 flex justify-end">
+        <div id="cart-drawer" class="w-full max-w-sm bg-white h-full p-6 flex flex-col justify-between shadow-2xl border-l border-slate-100 transform translate-x-full transition-transform duration-300">
             <div>
                 <div class="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
                     <h3 class="font-serif font-bold text-lg text-slate-900">Keranjang Pesanan</h3>
@@ -123,11 +91,8 @@
                 <div id="cart-items" class="space-y-3 max-h-[60vh] overflow-y-auto"></div>
             </div>
             <div class="border-t border-slate-100 pt-4">
-                <div class="flex justify-between mb-4 font-bold text-sm text-slate-900">
-                    <span>Total:</span>
-                    <span id="cart-total" class="text-[#B45309]">Rp 0</span>
-                </div>
-                <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-[0_4px_15px_rgba(180,83,9,0.2)]">Checkout via WhatsApp</button>
+                <div class="flex justify-between mb-4 font-bold text-sm text-slate-900"><span>Total:</span><span id="cart-total" class="text-[#B45309]">Rp 0</span></div>
+                <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-md">Checkout via WhatsApp</button>
             </div>
         </div>
     </div>
@@ -135,308 +100,168 @@
     <!-- SCRIPT -->
     <script>
         const products = [
-            { id: 1, name: "Baswara Vows", price: 75000, category: "wedding", desc: "Undangan digital minimalis & elegan dengan fitur RSVP, hitung mundur, dan buku tamu interaktif.", previewUrl: "https://baswara-vows.netlify.app/", cover: "baswara-vows.png" },
+            { 
+                id: 1, name: "Baswara Vows", price: 50000, category: "wedding", 
+                intro: "Ingin pernikahan dengan undangan yang terlihat mewah dan berkelas, tetapi tetap ramah di kantong? Baswara Vows hadir sebagai undangan website bertema klasik Nusantara dengan sentuhan modern luxury yang membuat hari spesial Anda semakin berkesan.",
+                previewUrl: "https://baswara-vows.netlify.app/", cover: "baswara-vows.png" 
+            },
             { id: 2, name: "Sage Green", price: 99000, category: "wedding", desc: "Tema botanical aesthetic bernuansa hijau sage yang menenangkan dan modern.", previewUrl: "#" },
             { id: 3, name: "Birthday Gold", price: 45000, category: "greeting", desc: "Kartu ucapan ulang tahun interaktif berornamen emas eksklusif.", previewUrl: "#" },
             { id: 4, name: "Eid Mubarak", price: 50000, category: "greeting", desc: "Kartu ucapan hari raya dengan sentuhan islami modern dan latar musik.", previewUrl: "#" },
             { id: 5, name: "Custom Exclusive", price: 150000, category: "custom", desc: "Layanan pembuatan undangan digital khusus sesuai konsep personal Anda.", previewUrl: "#" }
         ];
 
-        // Inisialisasi history state awal saat halaman dimuat
-        if (!history.state) {
-            history.replaceState({ view: 'catalog' }, '');
-        }
-
-        // --- DOM Controller Functions ---
-        function openMenuDOM() {
-            const menu = document.getElementById('nav-menu');
-            const sidebar = document.getElementById('nav-sidebar');
-            menu.classList.remove('hidden');
-            setTimeout(() => {
-                menu.classList.remove('bg-black/0', 'backdrop-blur-none');
-                menu.classList.add('bg-black/40', 'backdrop-blur-sm');
-                sidebar.classList.remove('-translate-x-full');
-            }, 10);
-        }
-
-        function closeMenuDOM() {
-            const menu = document.getElementById('nav-menu');
-            const sidebar = document.getElementById('nav-sidebar');
-            menu.classList.remove('bg-black/40', 'backdrop-blur-sm');
-            menu.classList.add('bg-black/0', 'backdrop-blur-none');
-            sidebar.classList.add('-translate-x-full');
-            setTimeout(() => {
-                menu.classList.add('hidden');
-            }, 300);
-        }
+        if (!history.state) history.replaceState({ view: 'catalog' }, '');
 
         function toggleMenu() {
-            const menu = document.getElementById('nav-menu');
-            if (menu.classList.contains('hidden')) {
-                history.pushState({ modal: 'menu' }, '');
-                openMenuDOM();
-            } else {
-                history.back();
-            }
+            const m = document.getElementById('nav-menu'), s = document.getElementById('nav-sidebar');
+            if (m.classList.contains('hidden')) { history.pushState({ modal: 'menu' }, ''); m.classList.remove('hidden'); setTimeout(() => { m.classList.remove('bg-black/0'); m.classList.add('bg-black/40', 'backdrop-blur-sm'); s.classList.remove('-translate-x-full'); }, 10); }
+            else { history.back(); }
         }
-
-        function openCartDOM() {
-            const modal = document.getElementById('cart-modal');
-            const drawer = document.getElementById('cart-drawer');
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('bg-black/0', 'backdrop-blur-none');
-                modal.classList.add('bg-black/40', 'backdrop-blur-sm');
-                drawer.classList.remove('translate-x-full');
-            }, 10);
-        }
-
-        function closeCartDOM() {
-            const modal = document.getElementById('cart-modal');
-            const drawer = document.getElementById('cart-drawer');
-            modal.classList.remove('bg-black/40', 'backdrop-blur-sm');
-            modal.classList.add('bg-black/0', 'backdrop-blur-none');
-            drawer.classList.add('translate-x-full');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
+        function closeMenuDOM() {
+            const m = document.getElementById('nav-menu'), s = document.getElementById('nav-sidebar');
+            m.classList.remove('bg-black/40', 'backdrop-blur-sm'); m.classList.add('bg-black/0'); s.classList.add('-translate-x-full');
+            setTimeout(() => m.classList.add('hidden'), 300);
         }
 
         function toggleCart() {
-            const modal = document.getElementById('cart-modal');
-            if (modal.classList.contains('hidden')) {
-                history.pushState({ modal: 'cart' }, '');
-                openCartDOM();
-            } else {
-                history.back();
-            }
+            const m = document.getElementById('cart-modal'), d = document.getElementById('cart-drawer');
+            if (m.classList.contains('hidden')) { history.pushState({ modal: 'cart' }, ''); m.classList.remove('hidden'); setTimeout(() => { m.classList.remove('bg-black/0'); m.classList.add('bg-black/40', 'backdrop-blur-sm'); d.classList.remove('translate-x-full'); }, 10); }
+            else { history.back(); }
+        }
+        function closeCartDOM() {
+            const m = document.getElementById('cart-modal'), d = document.getElementById('cart-drawer');
+            m.classList.remove('bg-black/40', 'backdrop-blur-sm'); m.classList.add('bg-black/0'); d.classList.add('translate-x-full');
+            setTimeout(() => m.classList.add('hidden'), 300);
         }
 
         function openDetailDOM(id) {
             const p = products.find(prod => prod.id === id);
-            const catalogSec = document.getElementById('catalog-section');
-            const detailSec = document.getElementById('detail-section');
-            const detailContent = document.getElementById('detail-content');
+            const cSec = document.getElementById('catalog-section'), dSec = document.getElementById('detail-section'), dCont = document.getElementById('detail-content');
+            
+            let extra = p.id === 1 ? `
+                <p class="text-xs text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                <div class="mb-6 bg-slate-50/80 p-4.5 rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 class="font-serif font-bold text-xs text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-600">
+                        <li><strong class="text-slate-900">Custom Nama Tamu:</strong> Nama tamu otomatis tertera di link untuk memberikan kesan eksklusif.</li>
+                        <li><strong class="text-slate-900">RSVP & Buku Tamu:</strong> Rekap kehadiran dan doa kerabat secara real-time.</li>
+                        <li><strong class="text-slate-900">Hitung Mundur:</strong> Tersinkronisasi langsung ke Google Calendar tamu.</li>
+                        <li><strong class="text-slate-900">Galeri Foto & Video:</strong> Tampilkan momen terbaik dengan layout estetik.</li>
+                        <li><strong class="text-slate-900">Navigasi Google Maps:</strong> Membantu tamu menuju lokasi dengan akurat.</li>
+                        <li><strong class="text-slate-900">Amplop Digital:</strong> Fitur salin nomor rekening otomatis untuk kado cashless.</li>
+                    </ul>
+                </div>
+                <div class="mb-6 bg-amber-50/30 p-4.5 rounded-2xl border border-amber-100 shadow-sm">
+                    <h4 class="font-serif font-bold text-xs text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan Produk</h4>
+                    <ul class="space-y-1.5 text-xs text-amber-900/80 list-disc list-inside">
+                        <li>Desain mewah, <span class="italic font-semibold">timeless</span>, dan profesional.</li>
+                        <li>Praktis disebar tanpa batas melalui berbagai aplikasi pesan instan.</li>
+                    </ul>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Tamu Undangan</label>
+                    <input type="text" id="guest-name-input" placeholder="Contoh: LUNÉVA" oninput="updatePreviewLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                </div>
+            ` : `<p class="text-xs text-slate-600 mb-6 leading-relaxed">${p.desc}</p>`;
 
-            let guestInputHtml = '';
-            if (p.previewUrl.includes('baswara-vows.netlify.app')) {
-                guestInputHtml = `
-                    <div class="mb-5">
-                        <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider flex items-center gap-2">
-                            <svg class="w-4 h-4 text-[#B45309]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                            Custom Nama Tamu Undangan
-                        </label>
-                        <input type="text" id="guest-name-input" placeholder="Contoh: LUNÉVA" oninput="updatePreviewLink('${p.previewUrl}')" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
-                        <p class="text-[10px] text-slate-400 mt-1.5">Link preview otomatis terupdate dengan format ?to=</p>
-                    </div>
-                `;
-            }
-
-            const detailCoverHtml = p.id === 1
-                ? `<img src="${p.cover}" alt="${p.name}" class="w-full aspect-[3/4] object-cover rounded-2xl mb-5 shadow-sm">`
-                : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-5 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`;
-
-            detailContent.innerHTML = `
-                ${detailCoverHtml}
-                <span class="text-[10px] uppercase tracking-widest text-[#B45309] font-bold block mb-1">
-                    ${p.category === 'wedding' ? 'Undangan Pernikahan' : p.category === 'greeting' ? 'Kartu Ucapan Digital' : 'Custom Desain'}
-                </span>
+            dCont.innerHTML = `
+                ${p.id === 1 ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-2xl mb-5 shadow-sm">` : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-5 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`}
+                <span class="text-[10px] uppercase tracking-widest text-[#B45309] font-bold block mb-1">${p.category === 'wedding' ? 'Undangan Pernikahan' : 'Kartu Ucapan'}</span>
                 <h2 class="font-serif font-bold text-3xl text-slate-900 mb-1">${p.name}</h2>
-                <p class="font-bold text-[#B45309] text-base mb-3">Rp ${p.price.toLocaleString('id-ID')}</p>
-                <p class="text-xs text-slate-600 mb-6 leading-relaxed">${p.desc}</p>
-                
-                ${guestInputHtml}
-
+                <p class="font-bold text-[#B45309] text-base mb-4">Rp ${p.price.toLocaleString('id-ID')}</p>
+                ${extra}
                 <div class="flex gap-2.5">
-                    <a id="preview-link-btn" href="${p.previewUrl}" target="_blank" class="flex-1 py-3 border border-slate-200 text-center text-xs font-semibold rounded-2xl hover:bg-slate-50 transition text-slate-800 flex items-center justify-center gap-2 shadow-sm">
-                        <svg class="w-4 h-4 text-[#B45309]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                        Live Preview
-                    </a>
-                    <button onclick="addToCart(${p.id}); showCatalog();" class="flex-1 py-3 bg-[#B45309] text-white text-xs font-semibold rounded-2xl hover:bg-slate-900 transition shadow-[0_4px_15px_rgba(180,83,9,0.25)] flex items-center justify-center gap-2">
-                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                        Pilih & Keranjang
-                    </button>
+                    <a id="preview-link-btn" href="${p.previewUrl}" target="_blank" class="flex-1 py-3 border border-slate-200 text-center text-xs font-semibold rounded-2xl hover:bg-slate-50 transition text-slate-800 flex items-center justify-center gap-2 shadow-sm">Live Preview</a>
+                    <button onclick="addToCart(${p.id}); showCatalog();" class="flex-1 py-3 bg-[#B45309] text-white text-xs font-semibold rounded-2xl hover:bg-slate-900 transition shadow-sm">Pilih & Keranjang</button>
                 </div>
             `;
 
-            catalogSec.classList.add('opacity-0');
-            setTimeout(() => {
-                catalogSec.classList.add('hidden');
-                detailSec.classList.remove('hidden');
-                detailSec.classList.remove('opacity-0', 'translate-y-3');
-                detailSec.classList.add('opacity-100', 'translate-y-0');
-            }, 200);
+            cSec.classList.add('opacity-0');
+            setTimeout(() => { cSec.classList.add('hidden'); dSec.classList.remove('hidden'); dSec.classList.remove('opacity-0', 'translate-y-3'); dSec.classList.add('opacity-100', 'translate-y-0'); }, 200);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function showCatalogDOM() {
-            const catalogSec = document.getElementById('catalog-section');
-            const detailSec = document.getElementById('detail-section');
-
-            detailSec.classList.add('opacity-0', 'translate-y-3');
-            setTimeout(() => {
-                detailSec.classList.add('hidden');
-                catalogSec.classList.remove('hidden');
-                catalogSec.classList.remove('opacity-0');
-            }, 200);
+            const cSec = document.getElementById('catalog-section'), dSec = document.getElementById('detail-section');
+            dSec.classList.add('opacity-0', 'translate-y-3');
+            setTimeout(() => { dSec.classList.add('hidden'); cSec.classList.remove('hidden', 'opacity-0'); }, 200);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function openDetail(id) {
-            history.pushState({ view: 'detail', id: id }, '');
-            openDetailDOM(id);
-        }
+        function openDetail(id) { history.pushState({ view: 'detail', id: id }, ''); openDetailDOM(id); }
+        function showCatalog() { if (!document.getElementById('detail-section').classList.contains('hidden')) history.back(); else showCatalogDOM(); }
+        function selectMenuCategory(cat) { if (!document.getElementById('nav-menu').classList.contains('hidden')) history.back(); filterCategory(cat, document.getElementById('btn-' + cat)); }
 
-        function showCatalog() {
-            const detailSec = document.getElementById('detail-section');
-            if (!detailSec.classList.contains('hidden')) {
-                history.back();
-            } else {
-                showCatalogDOM();
-            }
-        }
-
-        function selectMenuCategory(category) {
-            const menu = document.getElementById('nav-menu');
-            if (!menu.classList.contains('hidden')) {
-                history.back();
-            }
-            filterCategory(category, document.getElementById('btn-' + category));
-        }
-
-        // --- Sinkronisasi Tombol Back Chrome / Browser ---
-        window.addEventListener('popstate', (event) => {
-            const menu = document.getElementById('nav-menu');
-            const cartModal = document.getElementById('cart-modal');
-            const detailSec = document.getElementById('detail-section');
-
-            let handled = false;
-
-            if (!menu.classList.contains('hidden')) {
-                closeMenuDOM();
-                handled = true;
-            }
-            if (!cartModal.classList.contains('hidden')) {
-                closeCartDOM();
-                handled = true;
-            }
-            if (!detailSec.classList.contains('hidden')) {
-                showCatalogDOM();
-                handled = true;
-            }
-
-            if (!handled && event.state && event.state.view === 'detail') {
-                openDetailDOM(event.state.id);
-            }
+        window.addEventListener('popstate', (e) => {
+            if (!document.getElementById('nav-menu').classList.contains('hidden')) closeMenuDOM();
+            else if (!document.getElementById('cart-modal').classList.contains('hidden')) closeCartDOM();
+            else if (!document.getElementById('detail-section').classList.contains('hidden')) showCatalogDOM();
+            else if (e.state && e.state.view === 'detail') openDetailDOM(e.state.id);
         });
 
-        // --- Render Produk & Lainnya ---
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('product-grid');
             const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-            
-            grid.innerHTML = filtered.map(p => {
-                const coverHtml = p.id === 1
-                    ? `<img src="${p.cover}" alt="${p.name}" class="w-full aspect-[3/4] object-cover rounded-xl mb-2.5 shadow-sm">`
-                    : `<div class="aspect-[3/4] bg-slate-100 rounded-xl mb-2.5 flex items-center justify-center text-[11px] text-slate-400 font-serif italic group-hover:bg-slate-200/60 transition-colors">${p.name}</div>`;
-
-                return `
-                    <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between group">
-                        <div>
-                            ${coverHtml}
-                            <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold block truncate">
-                                ${p.category === 'wedding' ? 'Undangan' : p.category === 'greeting' ? 'Kartu Ucapan' : 'Custom'}
-                            </span>
-                            <h3 class="font-serif font-bold text-sm text-slate-900 truncate mt-0.5">${p.name}</h3>
-                        </div>
-                        <div class="mt-2">
-                            <p class="font-bold text-[#B45309] text-xs mb-2.5">Rp ${p.price.toLocaleString('id-ID')}</p>
-                            <div class="flex gap-1.5">
-                                <button onclick="openDetail(${p.id})" class="flex-1 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-xl transition">Detail</button>
-                                <button onclick="addToCart(${p.id})" class="flex-1 py-1.5 bg-slate-900 hover:bg-[#B45309] text-white text-[11px] font-semibold rounded-xl transition shadow-sm">Pilih</button>
-                            </div>
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                    <div>
+                        ${p.id === 1 ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-xl mb-2.5">` : `<div class="aspect-[3/4] bg-slate-100 rounded-xl mb-2.5 flex items-center justify-center text-[11px] text-slate-400 font-serif italic">${p.name}</div>`}
+                        <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold block truncate">${p.category === 'wedding' ? 'Undangan' : 'Kartu Ucapan'}</span>
+                        <h3 class="font-serif font-bold text-sm text-slate-900 truncate mt-0.5">${p.name}</h3>
+                    </div>
+                    <div class="mt-2">
+                        <p class="font-bold text-[#B45309] text-xs mb-2.5">Rp ${p.price.toLocaleString('id-ID')}</p>
+                        <div class="flex gap-1.5">
+                            <button onclick="openDetail(${p.id})" class="flex-1 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-xl transition">Detail</button>
+                            <button onclick="addToCart(${p.id})" class="flex-1 py-1.5 bg-slate-900 hover:bg-[#B45309] text-white text-[11px] font-semibold rounded-xl transition">Pilih</button>
                         </div>
                     </div>
-                `;
-            }).join('');
+                </div>
+            `).join('');
         }
 
-        function filterCategory(category, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.className = 'filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition';
-            });
-            if (btn) {
-                btn.className = 'filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition shadow-sm';
-            }
-            renderProducts(category);
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition');
+            if (btn) btn.className = 'filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition shadow-sm';
+            renderProducts(cat);
         }
 
-        function updatePreviewLink(baseUrl) {
-            const inputVal = document.getElementById('guest-name-input').value.trim();
+        function updatePreviewLink(url) {
+            const val = document.getElementById('guest-name-input').value.trim();
             const previewBtn = document.getElementById('preview-link-btn');
-            if (inputVal) {
-                previewBtn.href = `${baseUrl}?to=${encodeURIComponent(inputVal)}`;
-            } else {
-                previewBtn.href = baseUrl;
+            if (previewBtn) {
+                previewBtn.href = val ? `${url}?to=${encodeURIComponent(val)}` : url;
             }
         }
 
         let cart = [];
         function addToCart(id) {
-            const p = products.find(prod => prod.id === id);
-            cart.push(p);
+            cart.push(products.find(prod => prod.id === id));
             updateCartUI();
-
-            const cartIconBtn = document.getElementById('cart-btn-icon');
-            cartIconBtn.classList.add('scale-125', 'bg-[#B45309]', 'text-white');
-            setTimeout(() => {
-                cartIconBtn.classList.remove('scale-125', 'bg-[#B45309]', 'text-white');
-            }, 300);
+            const btn = document.getElementById('cart-btn-icon');
+            btn.classList.add('scale-125', 'bg-[#B45309]', 'text-white');
+            setTimeout(() => btn.classList.remove('scale-125', 'bg-[#B45309]', 'text-white'), 300);
         }
 
         function updateCartUI() {
             document.getElementById('cart-count').textContent = cart.length;
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p class="text-xs text-slate-400 text-center py-8">Keranjang kosong.</p>';
-                cartTotal.textContent = 'Rp 0';
-                return;
-            }
-
+            const items = document.getElementById('cart-items'), totalEl = document.getElementById('cart-total');
+            if (cart.length === 0) { items.innerHTML = '<p class="text-xs text-slate-400 text-center py-8">Keranjang kosong.</p>'; totalEl.textContent = 'Rp 0'; return; }
             let total = 0;
-            cartItems.innerHTML = cart.map((item, index) => {
+            items.innerHTML = cart.map((item, i) => {
                 total += item.price;
-                return `
-                    <div class="flex justify-between items-center bg-slate-50 p-3 rounded-2xl border border-slate-100 shadow-sm">
-                        <div>
-                            <h4 class="font-serif font-bold text-xs text-slate-900">${item.name}</h4>
-                            <p class="text-[11px] text-[#B45309] font-semibold">Rp ${item.price.toLocaleString('id-ID')}</p>
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-xs text-red-500 hover:underline font-medium px-2 py-1">Hapus</button>
-                    </div>
-                `;
+                return `<div class="flex justify-between items-center bg-slate-50 p-3 rounded-2xl border border-slate-100"><div><h4 class="font-serif font-bold text-xs text-slate-900">${item.name}</h4><p class="text-[11px] text-[#B45309] font-semibold">Rp ${item.price.toLocaleString('id-ID')}</p></div><button onclick="removeFromCart(${i})" class="text-xs text-red-500 hover:underline px-2 py-1">Hapus</button></div>`;
             }).join('');
-            cartTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+            totalEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+        function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
 
         function checkoutWhatsApp() {
-            if (cart.length === 0) {
-                alert('Keranjang masih kosong!');
-                return;
-            }
-            let msg = "Halo LUNÉVA, saya ingin memesan produk berikut:%0A";
-            let total = 0;
-            cart.forEach((item, index) => {
-                msg += `${index + 1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`;
-                total += item.price;
-            });
+            if (cart.length === 0) { alert('Keranjang masih kosong!'); return; }
+            let msg = "Halo LUNÉVA, saya ingin memesan produk berikut:%0A", total = 0;
+            cart.forEach((item, i) => { msg += `${i + 1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`; total += item.price; });
             msg += `%0ATotal: Rp ${total.toLocaleString('id-ID')}%0AMohon info selanjutnya. Terima kasih.`;
             window.open("https://wa.me/6281234567890?text=" + msg, '_blank');
         }
