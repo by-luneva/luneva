@@ -142,7 +142,12 @@
             { id: 5, name: "Custom Exclusive", price: 150000, category: "custom", desc: "Layanan pembuatan undangan digital khusus sesuai konsep personal Anda.", previewUrl: "#" }
         ];
 
-        // --- DOM Open/Close Controller (Tanpa History Manipulasi Langsung) ---
+        // Inisialisasi history state awal saat halaman dimuat
+        if (!history.state) {
+            history.replaceState({ view: 'catalog' }, '');
+        }
+
+        // --- DOM Controller Functions ---
         function openMenuDOM() {
             const menu = document.getElementById('nav-menu');
             const sidebar = document.getElementById('nav-sidebar');
@@ -292,7 +297,6 @@
         }
 
         function selectMenuCategory(category) {
-            // Tutup menu terlebih dahulu menggunakan history.back() jika menu sedang terbuka
             const menu = document.getElementById('nav-menu');
             if (!menu.classList.contains('hidden')) {
                 history.back();
@@ -300,22 +304,29 @@
             filterCategory(category, document.getElementById('btn-' + category));
         }
 
-        // --- Integrasi Tombol Back HP / Browser (popstate) ---
+        // --- Sinkronisasi Tombol Back Chrome / Browser ---
         window.addEventListener('popstate', (event) => {
             const menu = document.getElementById('nav-menu');
+            const cartModal = document.getElementById('cart-modal');
+            const detailSec = document.getElementById('detail-section');
+
+            let handled = false;
+
             if (!menu.classList.contains('hidden')) {
                 closeMenuDOM();
-                return;
+                handled = true;
             }
-            const cartModal = document.getElementById('cart-modal');
             if (!cartModal.classList.contains('hidden')) {
                 closeCartDOM();
-                return;
+                handled = true;
             }
-            const detailSec = document.getElementById('detail-section');
             if (!detailSec.classList.contains('hidden')) {
                 showCatalogDOM();
-                return;
+                handled = true;
+            }
+
+            if (!handled && event.state && event.state.view === 'detail') {
+                openDetailDOM(event.state.id);
             }
         });
 
