@@ -99,16 +99,31 @@
 
     <!-- SCRIPT -->
     <script>
+        // Array produk ditaruh dengan urutan produk terbaru di paling atas (index 0)
         const products = [
             { 
-                id: 1, name: "Baswara Vows", price: 50000, category: "wedding", 
-                intro: "Ingin pernikahan dengan undangan yang terlihat mewah dan berkelas, tetapi tetap ramah di kantong? Baswara Vows hadir sebagai undangan website bertema klasik Nusantara dengan sentuhan modern luxury yang membuat hari spesial Anda semakin berkesan.",
-                previewUrl: "https://baswara-vows.netlify.app/", cover: "baswara-vows.png" 
+                id: 1, 
+                name: "AstroLuv", 
+                price: 10000, 
+                category: "greeting", 
+                isNew: true,
+                intro: "Ingin memberikan kejutan ulang tahun atau momen spesial untuk pasangan dengan cara yang paling beda, estetik, dan interaktif? AstroLuv hadir dengan konsep galaksi antariksa yang memukau, memadukan visual modern yang dreamy serta pengalaman digital yang super berkesan khusus untuk merayakan hari istimewa orang tersayang.",
+                previewUrl: "https://astroluv.netlify.app/", 
+                cover: "astroluv.png" 
             },
-            { id: 2, name: "Sage Green", price: 99000, category: "wedding", desc: "Tema botanical aesthetic bernuansa hijau sage yang menenangkan dan modern.", previewUrl: "#" },
-            { id: 3, name: "Birthday Gold", price: 45000, category: "greeting", desc: "Kartu ucapan ulang tahun interaktif berornamen emas eksklusif.", previewUrl: "#" },
-            { id: 4, name: "Eid Mubarak", price: 50000, category: "greeting", desc: "Kartu ucapan hari raya dengan sentuhan islami modern dan latar musik.", previewUrl: "#" },
-            { id: 5, name: "Custom Exclusive", price: 150000, category: "custom", desc: "Layanan pembuatan undangan digital khusus sesuai konsep personal Anda.", previewUrl: "#" }
+            { 
+                id: 2, 
+                name: "Baswara Vows", 
+                price: 50000, 
+                category: "wedding", 
+                isNew: false,
+                intro: "Ingin pernikahan dengan undangan website yang mewah, berkelas, dan serba bebas diatur sendiri? Baswara Vows hadir dengan fleksibilitas penuh untuk mewujudkan undangan digital impian Anda, memadukan estetika klasik Nusantara dan sentuhan modern luxury yang sangat berkesan.",
+                previewUrl: "https://baswara-vows.netlify.app/", 
+                cover: "baswara-vows.png" 
+            },
+            { id: 3, name: "Birthday Gold", price: 45000, category: "greeting", isNew: false, desc: "Kartu ucapan ulang tahun interaktif berornamen emas eksklusif.", previewUrl: "#", cover: "" },
+            { id: 4, name: "Eid Mubarak", price: 50000, category: "greeting", isNew: false, desc: "Kartu ucapan hari raya dengan sentuhan islami modern dan latar musik.", previewUrl: "#", cover: "" },
+            { id: 5, name: "Custom Exclusive", price: 150000, category: "custom", isNew: false, desc: "Layanan pembuatan undangan digital khusus sesuai konsep personal Anda.", previewUrl: "#", cover: "" }
         ];
 
         if (!history.state) history.replaceState({ view: 'catalog' }, '');
@@ -139,35 +154,78 @@
             const p = products.find(prod => prod.id === id);
             const cSec = document.getElementById('catalog-section'), dSec = document.getElementById('detail-section'), dCont = document.getElementById('detail-content');
             
-            let extra = p.id === 1 ? `
-                <p class="text-xs text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
-                <div class="mb-6 bg-slate-50/80 p-4.5 rounded-2xl border border-slate-100 shadow-sm">
-                    <h4 class="font-serif font-bold text-xs text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-600">
-                        <li><strong class="text-slate-900">Custom Nama Tamu:</strong> Nama tamu otomatis tertera di link untuk memberikan kesan eksklusif.</li>
-                        <li><strong class="text-slate-900">RSVP & Buku Tamu:</strong> Rekap kehadiran dan doa kerabat secara real-time.</li>
-                        <li><strong class="text-slate-900">Hitung Mundur:</strong> Tersinkronisasi langsung ke Google Calendar tamu.</li>
-                        <li><strong class="text-slate-900">Galeri Foto & Video:</strong> Tampilkan momen terbaik dengan layout estetik.</li>
-                        <li><strong class="text-slate-900">Navigasi Google Maps:</strong> Membantu tamu menuju lokasi dengan akurat.</li>
-                        <li><strong class="text-slate-900">Amplop Digital:</strong> Fitur salin nomor rekening otomatis untuk kado cashless.</li>
-                    </ul>
-                </div>
-                <div class="mb-6 bg-amber-50/30 p-4.5 rounded-2xl border border-amber-100 shadow-sm">
-                    <h4 class="font-serif font-bold text-xs text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan Produk</h4>
-                    <ul class="space-y-1.5 text-xs text-amber-900/80 list-disc list-inside">
-                        <li>Desain mewah, <span class="italic font-semibold">timeless</span>, dan profesional.</li>
-                        <li>Praktis disebar tanpa batas melalui berbagai aplikasi pesan instan.</li>
-                    </ul>
-                </div>
-                <div class="mb-6">
-                    <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Tamu Undangan</label>
-                    <input type="text" id="guest-name-input" placeholder="Contoh: LUNÉVA" oninput="updatePreviewLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
-                </div>
-            ` : `<p class="text-xs text-slate-600 mb-6 leading-relaxed">${p.desc}</p>`;
+            let extra = '';
+            if (p.name === "AstroLuv") {
+                extra = `
+                    <p class="text-xs text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    <div class="mb-6 bg-slate-50/80 p-4.5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan dan Kustomisasi</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li><strong class="text-slate-900">Kode Akses Rahasia (PIN 000000):</strong> Memberikan kesan misterius, privat, dan eksklusif sebelum penerima memasukkan kode khusus.</li>
+                            <li><strong class="text-slate-900">Bebas Custom Lagu & Playlist:</strong> Suasana halaman menjadi semakin syahdu dengan pemutar musik interaktif ala audio modern.</li>
+                            <li><strong class="text-slate-900">Masa Berlaku Selamanya:</strong> Kartu ucapan ini akan aktif selamanya tanpa batas waktu sebagai arsip digital abadi.</li>
+                            <li><strong class="text-slate-900">Galeri Polaroid & Surat Galaksi:</strong> Wadah pamer foto kenangan ala polaroid lengkap dengan surat cinta digital di antara bintang.</li>
+                            <li><strong class="text-slate-900">Fitur Interaktif Penuh Kejutan:</strong> Dilengkapi animasi buka kado, sistem tata surya interaktif, hingga Wishes From The Stars.</li>
+                            <li><strong class="text-slate-900">Super Ringan & Responsif:</strong> Dibangun dengan performa skrip ringan dan mulus dibuka lewat smartphone apa pun.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 bg-amber-50/30 p-4.5 rounded-2xl border border-amber-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan & Penawaran Harga</h4>
+                        <ul class="space-y-1.5 text-xs text-amber-900/80 list-disc list-inside">
+                            <li>Desain aesthetic, kekinian, dan anti-mainstream setara web developer profesional.</li>
+                            <li>Sangat praktis dibagikan melalui satu tautan saja via WhatsApp, Instagram, atau Telegram.</li>
+                            <li>Paket hemat berkualitas tinggi dengan harga yang sangat ramah di kantong anak muda.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Penerima</label>
+                            <input type="text" id="recipient-input" placeholder="Contoh: Nama Penerima" oninput="updateAstroLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Pengirim</label>
+                            <input type="text" id="sender-input" placeholder="Contoh: Nama Pengirim" oninput="updateAstroLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                        </div>
+                    </div>
+                `;
+            } else if (p.name === "Baswara Vows") {
+                extra = `
+                    <p class="text-xs text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    <div class="mb-6 bg-slate-50/80 p-4.5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs text-[#B45309] uppercase tracking-wider mb-3">Fitur dan Kustomisasi Tanpa Batas</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            <li><strong class="text-slate-900">Kustom Nama Tamu Tanpa Batas:</strong> Buat dan masukkan nama tamu undangan sebanyak apa pun tanpa batasan, memberikan kesan eksklusif dan personal.</li>
+                            <li><strong class="text-slate-900">Bebas Ganti Lagu Apa Saja:</strong> Suasana undangan semakin syahdu dengan pilihan musik latar atau lagu favorit sesuai selera.</li>
+                            <li><strong class="text-slate-900">Ganti Foto & Konten Sepuasnya:</strong> Bebas mengunggah, memperbarui, atau mengganti galeri foto dan video pre-wedding kapan pun.</li>
+                            <li><strong class="text-slate-900">Masa Berlaku Selamanya:</strong> Website undangan aktif selamanya menjadi arsip digital abadi untuk mengenang momen bahagia.</li>
+                            <li><strong class="text-slate-900">RSVP & Buku Tamu Real-Time:</strong> Rekap konfirmasi kehadiran dan doa kerabat tersimpan rapi secara otomatis.</li>
+                            <li><strong class="text-slate-900">Hitung Mundur & Google Calendar:</strong> Membantu tamu mengingat hari spesial dan langsung tersinkronisasi ke kalender.</li>
+                            <li><strong class="text-slate-900">Navigasi Google Maps:</strong> Membantu tamu menuju lokasi acara dengan akurat tanpa takut tersesat.</li>
+                            <li><strong class="text-slate-900">Amplop Digital:</strong> Memudahkan pengiriman kado secara cashless dengan fitur salin nomor rekening instan.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 bg-amber-50/30 p-4.5 rounded-2xl border border-amber-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan Produk</h4>
+                        <ul class="space-y-1.5 text-xs text-amber-900/80 list-disc list-inside">
+                            <li>Desain mewah, <span class="italic font-semibold">timeless</span>, dan profesional setara vendor premium.</li>
+                            <li>Praktis dibagikan tanpa batas melalui WhatsApp, Instagram, atau Telegram.</li>
+                            <li>Paket lengkap berkualitas tinggi dengan kebebasan penuh tanpa batasan repot.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Tamu Undangan</label>
+                        <input type="text" id="guest-name-input" placeholder="Contoh: LUNÉVA" oninput="updatePreviewLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                    </div>
+                `;
+            } else {
+                extra = `<p class="text-xs text-slate-600 mb-6 leading-relaxed">${p.desc}</p>`;
+            }
+
+            const imageCoverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-2xl mb-5 shadow-sm">` : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-5 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`;
 
             dCont.innerHTML = `
-                ${p.id === 1 ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-2xl mb-5 shadow-sm">` : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-5 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`}
-                <span class="text-[10px] uppercase tracking-widest text-[#B45309] font-bold block mb-1">${p.category === 'wedding' ? 'Undangan Pernikahan' : 'Kartu Ucapan'}</span>
+                ${imageCoverHtml}
+                <span class="text-[10px] uppercase tracking-widest text-[#B45309] font-bold block mb-1">${p.category === 'wedding' ? 'Undangan Pernikahan' : p.category === 'greeting' ? 'Kartu Ucapan Digital' : 'Custom Desain'}</span>
                 <h2 class="font-serif font-bold text-3xl text-slate-900 mb-1">${p.name}</h2>
                 <p class="font-bold text-[#B45309] text-base mb-4">Rp ${p.price.toLocaleString('id-ID')}</p>
                 ${extra}
@@ -203,22 +261,28 @@
         function renderProducts(filter = 'all') {
             const grid = document.getElementById('product-grid');
             const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
-            grid.innerHTML = filtered.map(p => `
-                <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between group">
-                    <div>
-                        ${p.id === 1 ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-xl mb-2.5">` : `<div class="aspect-[3/4] bg-slate-100 rounded-xl mb-2.5 flex items-center justify-center text-[11px] text-slate-400 font-serif italic">${p.name}</div>`}
-                        <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold block truncate">${p.category === 'wedding' ? 'Undangan' : 'Kartu Ucapan'}</span>
-                        <h3 class="font-serif font-bold text-sm text-slate-900 truncate mt-0.5">${p.name}</h3>
-                    </div>
-                    <div class="mt-2">
-                        <p class="font-bold text-[#B45309] text-xs mb-2.5">Rp ${p.price.toLocaleString('id-ID')}</p>
-                        <div class="flex gap-1.5">
-                            <button onclick="openDetail(${p.id})" class="flex-1 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-xl transition">Detail</button>
-                            <button onclick="addToCart(${p.id})" class="flex-1 py-1.5 bg-slate-900 hover:bg-[#B45309] text-white text-[11px] font-semibold rounded-xl transition">Pilih</button>
+            grid.innerHTML = filtered.map(p => {
+                const coverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-xl mb-2.5">` : `<div class="aspect-[3/4] bg-slate-100 rounded-xl mb-2.5 flex items-center justify-center text-[11px] text-slate-400 font-serif italic">${p.name}</div>`;
+                const newBadge = p.isNew ? `<span class="absolute top-2 right-2 bg-[#B45309] text-white text-[8px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">BARU</span>` : '';
+
+                return `
+                    <div class="relative bg-white rounded-2xl p-3 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                        ${newBadge}
+                        <div>
+                            ${coverHtml}
+                            <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold block truncate">${p.category === 'wedding' ? 'Undangan' : p.category === 'greeting' ? 'Kartu Ucapan' : 'Custom'}</span>
+                            <h3 class="font-serif font-bold text-sm text-slate-900 truncate mt-0.5">${p.name}</h3>
+                        </div>
+                        <div class="mt-2">
+                            <p class="font-bold text-[#B45309] text-xs mb-2.5">Rp ${p.price.toLocaleString('id-ID')}</p>
+                            <div class="flex gap-1.5">
+                                <button onclick="openDetail(${p.id})" class="flex-1 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-xl transition">Detail</button>
+                                <button onclick="addToCart(${p.id})" class="flex-1 py-1.5 bg-slate-900 hover:bg-[#B45309] text-white text-[11px] font-semibold rounded-xl transition">Pilih</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function filterCategory(cat, btn) {
@@ -232,6 +296,18 @@
             const previewBtn = document.getElementById('preview-link-btn');
             if (previewBtn) {
                 previewBtn.href = val ? `${url}?to=${encodeURIComponent(val)}` : url;
+            }
+        }
+
+        function updateAstroLink(baseUrl) {
+            const toVal = document.getElementById('recipient-input').value.trim();
+            const fromVal = document.getElementById('sender-input').value.trim();
+            const previewBtn = document.getElementById('preview-link-btn');
+            if (previewBtn) {
+                let params = [];
+                if (toVal) params.push(`to=${encodeURIComponent(toVal)}`);
+                if (fromVal) params.push(`from=${encodeURIComponent(fromVal)}`);
+                previewBtn.href = params.length > 0 ? `${baseUrl}?${params.join('&')}` : baseUrl;
             }
         }
 
