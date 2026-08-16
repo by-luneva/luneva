@@ -14,92 +14,110 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="antialiased selection:bg-[#B45309] selection:text-white">
+<body class="antialiased selection:bg-[#B45309] selection:text-white min-h-screen flex flex-col justify-between">
 
-    <!-- HEADER / NAVBAR -->
-    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
-        <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-            <div class="flex items-center space-x-2.5">
-                <button onclick="toggleMenu()" class="p-2 bg-slate-100 hover:bg-slate-200 border border-slate-200/60 rounded-xl text-slate-700 transition shadow-sm active:scale-95">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-                <a href="#" onclick="showCatalog(); return false;" class="flex items-center space-x-2 group">
-                    <img src="logo.png" alt="Luneva Logo" class="w-9 h-9 rounded-lg shadow-sm object-contain bg-white border border-slate-100 group-hover:scale-105 transition">
-                    <span class="font-serif text-xl font-semibold tracking-wider text-slate-900">LUNÉVA<span class="text-[#B45309]">.</span></span>
-                </a>
+    <div>
+        <!-- HEADER / NAVBAR -->
+        <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <button onclick="toggleMenu()" class="p-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200/60 rounded-xl text-slate-700 transition shadow-sm active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    </button>
+                    <a href="#" onclick="showCatalog(); return false;" class="flex items-center space-x-2.5 group">
+                        <img src="logo.png" alt="Luneva Logo" class="w-10 h-10 rounded-xl shadow-sm object-contain bg-white border border-slate-100 group-hover:scale-105 transition">
+                        <span class="font-serif text-2xl font-semibold tracking-wider text-slate-900">LUNÉVA<span class="text-[#B45309]">.</span></span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <a href="https://wa.me/6283161711216" target="_blank" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 bg-slate-900 hover:bg-[#B45309] text-white text-xs font-semibold rounded-xl transition shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                        <span>Konsultasi / Tanya-tanya</span>
+                    </a>
+                    <button id="cart-btn-icon" onclick="toggleCart()" class="relative p-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200/60 rounded-xl text-slate-700 transition shadow-sm active:scale-95">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-[#B45309] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-md">0</span>
+                    </button>
+                </div>
             </div>
-            <button id="cart-btn-icon" onclick="toggleCart()" class="relative p-2 bg-slate-100 hover:bg-slate-200 border border-slate-200/60 rounded-xl text-slate-700 transition shadow-sm active:scale-95">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-[#B45309] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-md">0</span>
+        </header>
+
+        <!-- SIDEBAR MENU -->
+        <div id="nav-menu" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 flex justify-start">
+            <div id="nav-sidebar" class="w-80 max-w-[85vw] bg-white h-full p-6 flex flex-col justify-between shadow-2xl border-r border-slate-100 transform -translate-x-full transition-transform duration-300">
+                <div>
+                    <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-100">
+                        <span class="font-serif font-bold text-lg text-slate-900">Navigasi Menu</span>
+                        <button onclick="toggleMenu()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-bold hover:bg-slate-200 transition">✕</button>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-serif font-semibold text-[11px] text-[#B45309] mb-2 uppercase tracking-widest">Kategori Pilihan</h4>
+                        <button onclick="selectMenuCategory('all')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Semua Produk</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                        <button onclick="selectMenuCategory('wedding')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Undangan Pernikahan</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                        <button onclick="selectMenuCategory('greeting')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Kartu Ucapan Digital</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                        <button onclick="selectMenuCategory('custom')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Custom Desain Khusus</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                    </div>
+                </div>
+                <div class="border-t border-slate-100 pt-4">
+                    <p class="text-[11px] text-slate-500 mb-2 font-medium">Butuh konsultasi atau tanya-tanya?</p>
+                    <a href="https://wa.me/6283161711216" target="_blank" class="block text-center py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-md">Chat WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- KONTEN UTAMA: KATALOG -->
+        <main id="catalog-section" class="py-8 max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-300">
+            <div class="text-center mb-8">
+                <h1 class="font-serif text-3xl sm:text-4xl font-bold text-slate-900 mb-2">Katalog Digital Eksklusif</h1>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto">Pilih undangan digital atau kartu ucapan interaktif terbaik untuk momen spesial Anda.</p>
+            </div>
+
+            <div class="mb-8">
+                <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1 px-1 max-w-xl mx-auto justify-start sm:justify-center">
+                    <button onclick="filterCategory('all', this)" id="btn-all" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition shadow-sm">Semua Produk</button>
+                    <button onclick="filterCategory('wedding', this)" id="btn-wedding" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Undangan Pernikahan</button>
+                    <button onclick="filterCategory('greeting', this)" id="btn-greeting" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Kartu Ucapan</button>
+                    <button onclick="filterCategory('custom', this)" id="btn-custom" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Custom Desain</button>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6"></div>
+        </main>
+
+        <!-- SECTION DETAIL PRODUK -->
+        <section id="detail-section" class="hidden py-8 max-w-2xl mx-auto px-4 transform opacity-0 translate-y-3 transition-all duration-300">
+            <button onclick="showCatalog()" class="mb-5 inline-flex items-center space-x-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200 px-4 py-2.5 rounded-xl shadow-sm transition group">
+                <svg class="w-4 h-4 text-[#B45309] transition group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                <span>Kembali ke Katalog</span>
             </button>
-        </div>
-    </header>
+            <div id="detail-content" class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-100 shadow-xl"></div>
+        </section>
 
-    <!-- SIDEBAR MENU -->
-    <div id="nav-menu" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 flex justify-start">
-        <div id="nav-sidebar" class="w-80 max-w-[85vw] bg-white h-full p-6 flex flex-col justify-between shadow-2xl border-r border-slate-100 transform -translate-x-full transition-transform duration-300">
-            <div>
-                <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-100">
-                    <span class="font-serif font-bold text-lg text-slate-900">Navigasi Menu</span>
-                    <button onclick="toggleMenu()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-bold hover:bg-slate-200 transition">✕</button>
+        <!-- MODAL KERANJANG -->
+        <div id="cart-modal" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 flex justify-end">
+            <div id="cart-drawer" class="w-full max-w-sm bg-white h-full p-6 flex flex-col justify-between shadow-2xl border-l border-slate-100 transform translate-x-full transition-transform duration-300">
+                <div>
+                    <div class="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
+                        <h3 class="font-serif font-bold text-lg text-slate-900">Keranjang Pesanan</h3>
+                        <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-bold hover:bg-slate-200 transition">✕</button>
+                    </div>
+                    <div id="cart-items" class="space-y-3 max-h-[60vh] overflow-y-auto"></div>
                 </div>
-                <div class="space-y-3">
-                    <h4 class="font-serif font-semibold text-[11px] text-[#B45309] mb-2 uppercase tracking-widest">Kategori Pilihan</h4>
-                    <button onclick="selectMenuCategory('all')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Semua Produk</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-                    <button onclick="selectMenuCategory('wedding')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Undangan Pernikahan</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-                    <button onclick="selectMenuCategory('greeting')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Kartu Ucapan Digital</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-                    <button onclick="selectMenuCategory('custom')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Custom Desain Khusus</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+                <div class="border-t border-slate-100 pt-4">
+                    <div class="flex justify-between mb-4 font-bold text-sm text-slate-900"><span>Total:</span><span id="cart-total" class="text-[#B45309]">Rp 0</span></div>
+                    <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-md">Checkout via WhatsApp</button>
                 </div>
-            </div>
-            <div class="border-t border-slate-100 pt-4">
-                <p class="text-[11px] text-slate-500 mb-2 font-medium">Butuh bantuan custom desain?</p>
-                <a href="https://wa.me/6281234567890" target="_blank" class="block text-center py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-md">Chat WhatsApp</a>
             </div>
         </div>
     </div>
 
-    <!-- KONTEN UTAMA: KATALOG -->
-    <main id="catalog-section" class="py-5 max-w-5xl mx-auto px-4 transition-all duration-300">
-        <div class="mb-5">
-            <div class="flex items-center space-x-2 overflow-x-auto no-scrollbar py-1 px-1 max-w-xl mx-auto justify-start sm:justify-center">
-                <button onclick="filterCategory('all', this)" id="btn-all" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition shadow-sm">Semua Produk</button>
-                <button onclick="filterCategory('wedding', this)" id="btn-wedding" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Undangan Pernikahan</button>
-                <button onclick="filterCategory('greeting', this)" id="btn-greeting" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Kartu Ucapan</button>
-                <button onclick="filterCategory('custom', this)" id="btn-custom" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Custom Desain</button>
-            </div>
-        </div>
-        <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5"></div>
-    </main>
-
-    <!-- SECTION DETAIL PRODUK -->
-    <section id="detail-section" class="hidden py-6 max-w-xl mx-auto px-4 transform opacity-0 translate-y-3 transition-all duration-300">
-        <button onclick="showCatalog()" class="mb-4 inline-flex items-center space-x-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-200 px-3.5 py-2 rounded-xl shadow-sm transition group">
-            <svg class="w-4 h-4 text-[#B45309] transition group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
-            <span>Kembali ke Katalog</span>
-        </button>
-        <div id="detail-content" class="bg-white rounded-3xl p-6 md:p-8 border border-slate-100 shadow-sm"></div>
-    </section>
-
-    <!-- MODAL KERANJANG -->
-    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/0 backdrop-blur-none hidden transition-all duration-300 flex justify-end">
-        <div id="cart-drawer" class="w-full max-w-sm bg-white h-full p-6 flex flex-col justify-between shadow-2xl border-l border-slate-100 transform translate-x-full transition-transform duration-300">
-            <div>
-                <div class="flex justify-between items-center mb-5 pb-3 border-b border-slate-100">
-                    <h3 class="font-serif font-bold text-lg text-slate-900">Keranjang Pesanan</h3>
-                    <button onclick="toggleCart()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-xs font-bold hover:bg-slate-200 transition">✕</button>
-                </div>
-                <div id="cart-items" class="space-y-3 max-h-[60vh] overflow-y-auto"></div>
-            </div>
-            <div class="border-t border-slate-100 pt-4">
-                <div class="flex justify-between mb-4 font-bold text-sm text-slate-900"><span>Total:</span><span id="cart-total" class="text-[#B45309]">Rp 0</span></div>
-                <button onclick="checkoutWhatsApp()" class="w-full py-3 bg-slate-900 text-white text-xs font-semibold rounded-2xl hover:bg-[#B45309] transition shadow-md">Checkout via WhatsApp</button>
-            </div>
-        </div>
-    </div>
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-100 py-6 mt-12 text-center text-xs text-slate-500">
+        <p>&copy; 2026 LUNÉVA Digital. All rights reserved. | Butuh bantuan? <a href="https://wa.me/6283161711216" target="_blank" class="text-[#B45309] font-semibold hover:underline">Hubungi Kami</a></p>
+    </footer>
 
     <!-- SCRIPT -->
     <script>
-        // Array produk ditaruh dengan urutan produk terbaru di paling atas (index 0)
         const products = [
             { 
                 id: 1, 
@@ -109,6 +127,7 @@
                 isNew: true,
                 intro: "Ingin memberikan kejutan ulang tahun atau momen spesial untuk pasangan dengan cara yang paling beda, estetik, dan interaktif? AstroLuv hadir dengan konsep galaksi antariksa yang memukau, memadukan visual modern yang dreamy serta pengalaman digital yang super berkesan khusus untuk merayakan hari istimewa orang tersayang.",
                 previewUrl: "https://astroluv.netlify.app/", 
+                orderUrl: "https://wa.me/p/27047705608237839/6283161711216",
                 cover: "astroluv.png" 
             },
             { 
@@ -119,11 +138,9 @@
                 isNew: false,
                 intro: "Ingin pernikahan dengan undangan website yang mewah, berkelas, dan serba bebas diatur sendiri? Baswara Vows hadir dengan fleksibilitas penuh untuk mewujudkan undangan digital impian Anda, memadukan estetika klasik Nusantara dan sentuhan modern luxury yang sangat berkesan.",
                 previewUrl: "https://baswara-vows.netlify.app/", 
+                orderUrl: "https://wa.me/p/28219534654353908/6283161711216",
                 cover: "baswara-vows.png" 
-            },
-            { id: 3, name: "Birthday Gold", price: 45000, category: "greeting", isNew: false, desc: "Kartu ucapan ulang tahun interaktif berornamen emas eksklusif.", previewUrl: "#", cover: "" },
-            { id: 4, name: "Eid Mubarak", price: 50000, category: "greeting", isNew: false, desc: "Kartu ucapan hari raya dengan sentuhan islami modern dan latar musik.", previewUrl: "#", cover: "" },
-            { id: 5, name: "Custom Exclusive", price: 150000, category: "custom", isNew: false, desc: "Layanan pembuatan undangan digital khusus sesuai konsep personal Anda.", previewUrl: "#", cover: "" }
+            }
         ];
 
         if (!history.state) history.replaceState({ view: 'catalog' }, '');
@@ -141,7 +158,7 @@
 
         function toggleCart() {
             const m = document.getElementById('cart-modal'), d = document.getElementById('cart-drawer');
-            if (m.classList.contains('hidden')) { history.pushState({ modal: 'cart' }, ''); m.classList.remove('hidden'); setTimeout(() => { m.classList.remove('bg-black/0'); m.classList.add('bg-black/40', 'backdrop-blur-sm'); d.classList.remove('translate-x-full'); }, 10); }
+            if (m.classList.contains('hidden')) { history.pushState({ modal: 'cart' }, ''); m.classList.add('hidden'); setTimeout(() => { m.classList.remove('bg-black/0'); m.classList.add('bg-black/40', 'backdrop-blur-sm'); d.classList.remove('translate-x-full'); }, 10); }
             else { history.back(); }
         }
         function closeCartDOM() {
@@ -157,10 +174,10 @@
             let extra = '';
             if (p.name === "AstroLuv") {
                 extra = `
-                    <p class="text-xs text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
-                    <div class="mb-6 bg-slate-50/80 p-4.5 rounded-2xl border border-slate-100 shadow-sm">
-                        <h4 class="font-serif font-bold text-xs text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan dan Kustomisasi</h4>
-                        <ul class="space-y-2.5 text-xs text-slate-600">
+                    <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    <div class="mb-6 bg-slate-50/80 p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan dan Kustomisasi</h4>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
                             <li><strong class="text-slate-900">Kode Akses Rahasia (PIN 000000):</strong> Memberikan kesan misterius, privat, dan eksklusif sebelum penerima memasukkan kode khusus.</li>
                             <li><strong class="text-slate-900">Bebas Custom Lagu & Playlist:</strong> Suasana halaman menjadi semakin syahdu dengan pemutar musik interaktif ala audio modern.</li>
                             <li><strong class="text-slate-900">Masa Berlaku Selamanya:</strong> Kartu ucapan ini akan aktif selamanya tanpa batas waktu sebagai arsip digital abadi.</li>
@@ -169,9 +186,9 @@
                             <li><strong class="text-slate-900">Super Ringan & Responsif:</strong> Dibangun dengan performa skrip ringan dan mulus dibuka lewat smartphone apa pun.</li>
                         </ul>
                     </div>
-                    <div class="mb-6 bg-amber-50/30 p-4.5 rounded-2xl border border-amber-100 shadow-sm">
-                        <h4 class="font-serif font-bold text-xs text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan & Penawaran Harga</h4>
-                        <ul class="space-y-1.5 text-xs text-amber-900/80 list-disc list-inside">
+                    <div class="mb-6 bg-amber-50/30 p-4 sm:p-5 rounded-2xl border border-amber-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan & Penawaran Harga</h4>
+                        <ul class="space-y-1.5 text-xs sm:text-sm text-amber-900/80 list-disc list-inside">
                             <li>Desain aesthetic, kekinian, dan anti-mainstream setara web developer profesional.</li>
                             <li>Sangat praktis dibagikan melalui satu tautan saja via WhatsApp, Instagram, atau Telegram.</li>
                             <li>Paket hemat berkualitas tinggi dengan harga yang sangat ramah di kantong anak muda.</li>
@@ -180,20 +197,20 @@
                     <div class="mb-6 space-y-4">
                         <div>
                             <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Penerima</label>
-                            <input type="text" id="recipient-input" placeholder="Contoh: Nama Penerima" oninput="updateAstroLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                            <input type="text" id="recipient-input" placeholder="Contoh: Nama Penerima" oninput="updateAstroLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-[#B45309] transition">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Pengirim</label>
-                            <input type="text" id="sender-input" placeholder="Contoh: Nama Pengirim" oninput="updateAstroLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                            <input type="text" id="sender-input" placeholder="Contoh: Nama Pengirim" oninput="updateAstroLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-[#B45309] transition">
                         </div>
                     </div>
                 `;
             } else if (p.name === "Baswara Vows") {
                 extra = `
-                    <p class="text-xs text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
-                    <div class="mb-6 bg-slate-50/80 p-4.5 rounded-2xl border border-slate-100 shadow-sm">
-                        <h4 class="font-serif font-bold text-xs text-[#B45309] uppercase tracking-wider mb-3">Fitur dan Kustomisasi Tanpa Batas</h4>
-                        <ul class="space-y-2.5 text-xs text-slate-600">
+                    <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    <div class="mb-6 bg-slate-50/80 p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-[#B45309] uppercase tracking-wider mb-3">Fitur dan Kustomisasi Tanpa Batas</h4>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
                             <li><strong class="text-slate-900">Kustom Nama Tamu Tanpa Batas:</strong> Buat dan masukkan nama tamu undangan sebanyak apa pun tanpa batasan, memberikan kesan eksklusif dan personal.</li>
                             <li><strong class="text-slate-900">Bebas Ganti Lagu Apa Saja:</strong> Suasana undangan semakin syahdu dengan pilihan musik latar atau lagu favorit sesuai selera.</li>
                             <li><strong class="text-slate-900">Ganti Foto & Konten Sepuasnya:</strong> Bebas mengunggah, memperbarui, atau mengganti galeri foto dan video pre-wedding kapan pun.</li>
@@ -204,9 +221,9 @@
                             <li><strong class="text-slate-900">Amplop Digital:</strong> Memudahkan pengiriman kado secara cashless dengan fitur salin nomor rekening instan.</li>
                         </ul>
                     </div>
-                    <div class="mb-6 bg-amber-50/30 p-4.5 rounded-2xl border border-amber-100 shadow-sm">
-                        <h4 class="font-serif font-bold text-xs text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan Produk</h4>
-                        <ul class="space-y-1.5 text-xs text-amber-900/80 list-disc list-inside">
+                    <div class="mb-6 bg-amber-50/30 p-4 sm:p-5 rounded-2xl border border-amber-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan Produk</h4>
+                        <ul class="space-y-1.5 text-xs sm:text-sm text-amber-900/80 list-disc list-inside">
                             <li>Desain mewah, <span class="italic font-semibold">timeless</span>, dan profesional setara vendor premium.</li>
                             <li>Praktis dibagikan tanpa batas melalui WhatsApp, Instagram, atau Telegram.</li>
                             <li>Paket lengkap berkualitas tinggi dengan kebebasan penuh tanpa batasan repot.</li>
@@ -214,24 +231,22 @@
                     </div>
                     <div class="mb-6">
                         <label class="block text-xs font-semibold text-slate-800 mb-2 uppercase tracking-wider">Custom Nama Tamu Undangan</label>
-                        <input type="text" id="guest-name-input" placeholder="Contoh: LUNÉVA" oninput="updatePreviewLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900 focus:outline-none focus:border-[#B45309] transition">
+                        <input type="text" id="guest-name-input" placeholder="Contoh: LUNÉVA" oninput="updatePreviewLink('${p.previewUrl}')" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 focus:outline-none focus:border-[#B45309] transition">
                     </div>
                 `;
-            } else {
-                extra = `<p class="text-xs text-slate-600 mb-6 leading-relaxed">${p.desc}</p>`;
             }
 
-            const imageCoverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-2xl mb-5 shadow-sm">` : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-5 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`;
+            const imageCoverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[4/3] sm:aspect-[16/9] object-cover rounded-2xl mb-6 shadow-sm">` : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-6 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`;
 
             dCont.innerHTML = `
                 ${imageCoverHtml}
-                <span class="text-[10px] uppercase tracking-widest text-[#B45309] font-bold block mb-1">${p.category === 'wedding' ? 'Undangan Pernikahan' : p.category === 'greeting' ? 'Kartu Ucapan Digital' : 'Custom Desain'}</span>
-                <h2 class="font-serif font-bold text-3xl text-slate-900 mb-1">${p.name}</h2>
-                <p class="font-bold text-[#B45309] text-base mb-4">Rp ${p.price.toLocaleString('id-ID')}</p>
+                <span class="text-[10px] uppercase tracking-widest text-[#B45309] font-bold block mb-1">${p.category === 'wedding' ? 'Undangan Pernikahan' : 'Kartu Ucapan Digital'}</span>
+                <h2 class="font-serif font-bold text-2xl sm:text-3xl text-slate-900 mb-1">${p.name}</h2>
+                <p class="font-bold text-[#B45309] text-base sm:text-lg mb-4">Rp ${p.price.toLocaleString('id-ID')}</p>
                 ${extra}
-                <div class="flex gap-2.5">
-                    <a id="preview-link-btn" href="${p.previewUrl}" target="_blank" class="flex-1 py-3 border border-slate-200 text-center text-xs font-semibold rounded-2xl hover:bg-slate-50 transition text-slate-800 flex items-center justify-center gap-2 shadow-sm">Live Preview</a>
-                    <button onclick="addToCart(${p.id}); showCatalog();" class="flex-1 py-3 bg-[#B45309] text-white text-xs font-semibold rounded-2xl hover:bg-slate-900 transition shadow-sm">Pilih & Keranjang</button>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a id="preview-link-btn" href="${p.previewUrl}" target="_blank" class="flex-1 py-3.5 border border-slate-200 text-center text-xs sm:text-sm font-semibold rounded-2xl hover:bg-slate-50 transition text-slate-800 flex items-center justify-center gap-2 shadow-sm">Live Preview</a>
+                    <a href="${p.orderUrl}" target="_blank" class="flex-1 py-3.5 bg-[#B45309] text-white text-center text-xs sm:text-sm font-semibold rounded-2xl hover:bg-slate-900 transition shadow-md flex items-center justify-center gap-2">Pesan via Katalog WhatsApp</a>
                 </div>
             `;
 
@@ -262,22 +277,22 @@
             const grid = document.getElementById('product-grid');
             const filtered = filter === 'all' ? products : products.filter(p => p.category === filter);
             grid.innerHTML = filtered.map(p => {
-                const coverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-xl mb-2.5">` : `<div class="aspect-[3/4] bg-slate-100 rounded-xl mb-2.5 flex items-center justify-center text-[11px] text-slate-400 font-serif italic">${p.name}</div>`;
-                const newBadge = p.isNew ? `<span class="absolute top-2 right-2 bg-[#B45309] text-white text-[8px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">BARU</span>` : '';
+                const coverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-xl mb-3 group-hover:scale-102 transition duration-300">` : `<div class="aspect-[3/4] bg-slate-100 rounded-xl mb-3 flex items-center justify-center text-xs text-slate-400 font-serif italic">${p.name}</div>`;
+                const newBadge = p.isNew ? `<span class="absolute top-3 right-3 bg-[#B45309] text-white text-[9px] font-bold px-2.5 py-1 rounded-full shadow-md z-10">BARU</span>` : '';
 
                 return `
-                    <div class="relative bg-white rounded-2xl p-3 border border-slate-100 shadow-sm hover:shadow-md transition flex flex-col justify-between group">
+                    <div class="relative bg-white rounded-2xl p-4 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.06)] transition-all duration-300 flex flex-col justify-between group">
                         ${newBadge}
                         <div>
                             ${coverHtml}
-                            <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold block truncate">${p.category === 'wedding' ? 'Undangan' : p.category === 'greeting' ? 'Kartu Ucapan' : 'Custom'}</span>
-                            <h3 class="font-serif font-bold text-sm text-slate-900 truncate mt-0.5">${p.name}</h3>
+                            <span class="text-[9px] uppercase tracking-wider text-slate-400 font-semibold block truncate">${p.category === 'wedding' ? 'Undangan' : 'Kartu Ucapan'}</span>
+                            <h3 class="font-serif font-bold text-sm sm:text-base text-slate-900 truncate mt-0.5">${p.name}</h3>
                         </div>
-                        <div class="mt-2">
-                            <p class="font-bold text-[#B45309] text-xs mb-2.5">Rp ${p.price.toLocaleString('id-ID')}</p>
-                            <div class="flex gap-1.5">
-                                <button onclick="openDetail(${p.id})" class="flex-1 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-[11px] font-semibold rounded-xl transition">Detail</button>
-                                <button onclick="addToCart(${p.id})" class="flex-1 py-1.5 bg-slate-900 hover:bg-[#B45309] text-white text-[11px] font-semibold rounded-xl transition">Pilih</button>
+                        <div class="mt-3">
+                            <p class="font-bold text-[#B45309] text-xs sm:text-sm mb-3">Rp ${p.price.toLocaleString('id-ID')}</p>
+                            <div class="flex gap-2">
+                                <button onclick="openDetail(${p.id})" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold rounded-xl transition">Detail</button>
+                                <a href="${p.orderUrl}" target="_blank" class="flex-1 py-2 bg-slate-900 hover:bg-[#B45309] text-white text-xs font-semibold rounded-xl transition text-center shadow-sm">Pesan</a>
                             </div>
                         </div>
                     </div>
@@ -339,7 +354,7 @@
             let msg = "Halo LUNÉVA, saya ingin memesan produk berikut:%0A", total = 0;
             cart.forEach((item, i) => { msg += `${i + 1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}%0A`; total += item.price; });
             msg += `%0ATotal: Rp ${total.toLocaleString('id-ID')}%0AMohon info selanjutnya. Terima kasih.`;
-            window.open("https://wa.me/6281234567890?text=" + msg, '_blank');
+            window.open("https://wa.me/6283161711216?text=" + msg, '_blank');
         }
 
         renderProducts();
