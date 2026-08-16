@@ -236,7 +236,7 @@
                 `;
             }
 
-            const imageCoverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[4/3] sm:aspect-[16/9] object-cover rounded-2xl mb-6 shadow-sm">` : `<div class="aspect-[16/9] bg-slate-100 rounded-2xl mb-6 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`;
+            const imageCoverHtml = p.cover ? `<img src="${p.cover}" class="w-full aspect-[3/4] object-cover rounded-2xl mb-6 shadow-sm">` : `<div class="aspect-[3/4] bg-slate-100 rounded-2xl mb-6 flex items-center justify-center text-xs text-slate-400 font-serif italic">Preview: ${p.name}</div>`;
 
             dCont.innerHTML = `
                 ${imageCoverHtml}
