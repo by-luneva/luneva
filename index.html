@@ -55,7 +55,6 @@
                         <button onclick="selectMenuCategory('all')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Semua Produk</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
                         <button onclick="selectMenuCategory('wedding')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Undangan Pernikahan</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
                         <button onclick="selectMenuCategory('greeting')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Kartu Ucapan Digital</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
-                        <button onclick="selectMenuCategory('custom')" class="w-full text-left px-4 py-3 bg-slate-50 hover:bg-slate-100 border border-slate-100 rounded-2xl text-xs font-semibold text-slate-800 transition flex items-center justify-between group"><span>Custom Desain Khusus</span><svg class="w-4 h-4 text-[#B45309] transition group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
                     </div>
 
                     <!-- Media Sosial -->
@@ -90,7 +89,6 @@
                     <button onclick="filterCategory('all', this)" id="btn-all" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition shadow-sm">Semua Produk</button>
                     <button onclick="filterCategory('wedding', this)" id="btn-wedding" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Undangan Pernikahan</button>
                     <button onclick="filterCategory('greeting', this)" id="btn-greeting" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Kartu Ucapan</button>
-                    <button onclick="filterCategory('custom', this)" id="btn-custom" class="filter-btn shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-600 transition">Custom Desain</button>
                 </div>
             </div>
 
@@ -133,13 +131,24 @@
     <script>
         const products = [
             { 
-                id: 1, 
-                name: "AstroLuv", 
-                price: 10000, 
+                id: 3, 
+                name: "Lunar Vellum", 
+                price: 15000, 
                 category: "greeting", 
                 isNew: true,
-                intro: "Ingin memberikan kejutan ulang tahun atau momen spesial untuk pasangan dengan cara yang paling beda, estetik, dan interaktif? AstroLuv hadir dengan konsep galaksi antariksa yang memukau, memadukan visual modern yang dreamy serta pengalaman digital yang super berkesan khusus untuk merayakan hari istimewa orang tersayang.",
-                previewUrl: "https://astroluv.netlify.app/", 
+                intro: "Mau ngasih surprise anniversary atau selebrasi buat doi tapi bosen sama kado yang gitu-gitu aja? Lunar Vellum hadir dengan konsep vintage vellum yang super aesthetic, memadukan visual retro yang timeless serta experience digital interaktif yang dijamin bikin doi tersentuh.",
+                previewUrl: "https://by-luneva.github.io/lunar-vellum/", 
+                orderUrl: "https://wa.me/6283161711216",
+                cover: "lunar-vellum.png" 
+            },
+            { 
+                id: 1, 
+                name: "AstroLuv", 
+                price: 15000, 
+                category: "greeting", 
+                isNew: false,
+                intro: "Mau ngasih kejutan ulang tahun atau momen spesial buat orang tersayang tapi bingung cari kado yang beda? AstroLuv hadir dengan konsep galaksi antariksa yang super aesthetic, memadukan visual modern yang dreamy serta experience digital interaktif yang dijamin bikin hari istimewanya makin berkesan.",
+                previewUrl: "https://by-luneva.github.io/astroluv/", 
                 orderUrl: "https://wa.me/p/27047705608237839/6283161711216",
                 cover: "astroluv.png" 
             },
@@ -149,8 +158,8 @@
                 price: 50000, 
                 category: "wedding", 
                 isNew: false,
-                intro: "Ingin pernikahan dengan undangan website yang mewah, berkelas, dan serba bebas diatur sendiri? Baswara Vows hadir dengan fleksibilitas penuh untuk mewujudkan undangan digital impian Anda, memadukan estetika klasik Nusantara dan sentuhan modern luxury yang sangat berkesan.",
-                previewUrl: "https://baswara-vows.netlify.app/", 
+                intro: "Mau nikahan pakai undangan website yang kelihatan mewah, berkelas, dan bebas diatur sendiri tanpa ribet? Baswara Vows hadir dengan fleksibilitas penuh untuk mewujudkan undangan digital impian kalian, memadukan estetika klasik Nusantara dan sentuhan modern luxury yang super elegan.",
+                previewUrl: "https://by-luneva.github.io/baswara-vows/", 
                 orderUrl: "https://wa.me/p/28219534654353908/6283161711216",
                 cover: "baswara-vows.png" 
             }
@@ -188,10 +197,15 @@
             if (p.name === "AstroLuv") {
                 extra = `
                     <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    
+                    <div class="mb-6 bg-slate-900 text-white p-4 sm:p-5 rounded-2xl shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-400 uppercase tracking-wider mb-1">Catatan Live Preview</h4>
+                        <p class="text-xs sm:text-sm text-slate-300">Mau langsung cek contoh jadinya? Masukkan kode PIN <span class="font-bold text-white bg-slate-800 px-2 py-0.5 rounded border border-slate-700">000000</span> saat membuka halaman live preview di bawah.</p>
+                    </div>
+
                     <div class="mb-6 bg-slate-50/80 p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-sm">
                         <h4 class="font-serif font-bold text-xs sm:text-sm text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan dan Kustomisasi</h4>
                         <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
-                            <li><strong class="text-slate-900">Kode Akses Rahasia (PIN 000000):</strong> Memberikan kesan misterius, privat, dan eksklusif sebelum penerima memasukkan kode khusus.</li>
                             <li><strong class="text-slate-900">Bebas Custom Lagu & Playlist:</strong> Suasana halaman menjadi semakin syahdu dengan pemutar musik interaktif ala audio modern.</li>
                             <li><strong class="text-slate-900">Masa Berlaku Selamanya:</strong> Kartu ucapan ini akan aktif selamanya tanpa batas waktu sebagai arsip digital abadi.</li>
                             <li><strong class="text-slate-900">Galeri Polaroid & Surat Galaksi:</strong> Wadah pamer foto kenangan ala polaroid lengkap dengan surat cinta digital di antara bintang.</li>
@@ -218,6 +232,29 @@
                         </div>
                     </div>
                 `;
+            } else if (p.name === "Lunar Vellum") {
+                extra = `
+                    <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    <div class="mb-6 bg-slate-50/80 p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan dan Kustomisasi</h4>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                            <li><strong class="text-slate-900">Pemutar Kaset Pita Audio (Pesan Suara):</strong> Fitur voice note interaktif dengan visual kaset pita retro untuk menyampaikan suara hati secara langsung.</li>
+                            <li><strong class="text-slate-900">Kolase Foto Bentuk Hati & Polaroid:</strong> Wadah pamer memori kebersamaan dengan desain kolase foto romantis dan gaya polaroid klasik.</li>
+                            <li><strong class="text-slate-900">Bebas Custom Lagu & Musik:</strong> Suasana halaman menjadi semakin syahdu dengan pemutar musik latar pilihan terbaik kalian.</li>
+                            <li><strong class="text-slate-900">Surat Cinta & Arsip Cerita:</strong> Halaman khusus untuk merangkai kata-kata manis dan perjalanan hubungan yang penuh makna.</li>
+                            <li><strong class="text-slate-900">Masa Berlaku Selamanya:</strong> Kartu ucapan ini akan aktif selamanya tanpa batas waktu sebagai arsip digital abadi.</li>
+                            <li><strong class="text-slate-900">Super Ringan & Responsif:</strong> Dibangun dengan performa skrip ringan dan mulus dibuka lewat smartphone apa pun.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 bg-amber-50/30 p-4 sm:p-5 rounded-2xl border border-amber-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan & Penawaran Harga</h4>
+                        <ul class="space-y-1.5 text-xs sm:text-sm text-amber-900/80 list-disc list-inside">
+                            <li>Desain aesthetic, kekinian, dan anti-mainstream setara web developer profesional.</li>
+                            <li>Sangat praktis dibagikan melalui satu tautan saja via WhatsApp, Instagram, atau Telegram.</li>
+                            <li>Paket hemat berkualitas tinggi dengan harga yang sangat ramah di kantong anak muda.</li>
+                        </ul>
+                    </div>
+                `;
             } else if (p.name === "Baswara Vows") {
                 extra = `
                     <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
@@ -235,11 +272,11 @@
                         </ul>
                     </div>
                     <div class="mb-6 bg-amber-50/30 p-4 sm:p-5 rounded-2xl border border-amber-100 shadow-sm">
-                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan Produk</h4>
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan & Penawaran Harga</h4>
                         <ul class="space-y-1.5 text-xs sm:text-sm text-amber-900/80 list-disc list-inside">
-                            <li>Desain mewah, <span class="italic font-semibold">timeless</span>, dan profesional setara vendor premium.</li>
-                            <li>Praktis dibagikan tanpa batas melalui WhatsApp, Instagram, atau Telegram.</li>
-                            <li>Paket lengkap berkualitas tinggi dengan kebebasan penuh tanpa batasan repot.</li>
+                            <li>Desain mewah, berkelas, dan profesional setara vendor undangan premium.</li>
+                            <li>Sangat praktis dibagikan melalui satu tautan saja via WhatsApp, Instagram, atau Telegram.</li>
+                            <li>Paket hemat berkualitas tinggi dengan kebebasan penuh tanpa batasan repot.</li>
                         </ul>
                     </div>
                     <div class="mb-6">
