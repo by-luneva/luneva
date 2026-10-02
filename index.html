@@ -139,11 +139,22 @@
     <script>
         const products = [
             { 
+                id: 4, 
+                name: "Spidey-Card", 
+                price: 10000, 
+                category: "greeting", 
+                isNew: true,
+                intro: "Mau ngasih kejutan ulang tahun atau momen seru buat doi, sahabat, atau anak tersayang dengan tema superhero yang super keren? Spidey-Card hadir dengan konsep ala pahlawan laba-laba yang dinamis, memadukan visual web-slinging yang interaktif serta pengalaman digital penuh animasi seru.",
+                previewUrl: "https://by-luneva.github.io/spidey-card/", 
+                orderUrl: "https://wa.me/6283161711216?text=Halo%20Luneva,%20saya%20tertarik%20memesan%20Spidey-Card",
+                cover: "spidey-card.png" 
+            },
+            { 
                 id: 3, 
                 name: "Lunar Vellum", 
                 price: 10000, 
                 category: "greeting", 
-                isNew: true,
+                isNew: false,
                 intro: "Mau ngasih surprise anniversary atau selebrasi buat doi tapi bosen sama kado yang gitu-gitu aja? Lunar Vellum hadir dengan konsep vintage vellum yang super aesthetic, memadukan visual retro yang timeless serta experience digital interaktif yang dijamin bikin doi tersentuh.",
                 previewUrl: "https://by-luneva.github.io/lunar-vellum/", 
                 orderUrl: "https://wa.me/p/28580191748239048/6283161711216",
@@ -202,7 +213,29 @@
             const cSec = document.getElementById('catalog-section'), dSec = document.getElementById('detail-section'), dCont = document.getElementById('detail-content');
             
             let extra = '';
-            if (p.name === "AstroLuv") {
+            if (p.name === "Spidey-Card") {
+                extra = `
+                    <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
+                    <div class="mb-6 bg-slate-50/80 p-4 sm:p-5 rounded-2xl border border-slate-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-[#B45309] uppercase tracking-wider mb-3">Fitur Unggulan dan Kustomisasi</h4>
+                        <ul class="space-y-2.5 text-xs sm:text-sm text-slate-600">
+                            <li><strong class="text-slate-900">Custom 2 Lagu Pilihan:</strong> Suasana kartu ucapan menjadi lebih hidup dengan pemutar musik ganda yang bisa disesuaikan dengan lagu favorit kalian.</li>
+                            <li><strong class="text-slate-900">Isi Pesan Spesial Tanpa Batas:</strong> Ruang khusus untuk merangkai kata-kata ucapan, pantun, atau surat semangat yang penuh makna.</li>
+                            <li><strong class="text-slate-900">Pergerakan Interaktif & Animasi Seru:</strong> Dilengkapi berbagai elemen animasi web-slinging dan sentuhan interaktif yang dinamis serta menghibur.</li>
+                            <li><strong class="text-slate-900">Masa Berlaku Selamanya:</strong> Kartu ucapan ini akan aktif selamanya tanpa batas waktu sebagai arsip digital abadi.</li>
+                            <li><strong class="text-slate-900">Super Ringan & Responsif:</strong> Dibangun dengan performa skrip ringan dan mulus dibuka lewat smartphone apa pun.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6 bg-amber-50/30 p-4 sm:p-5 rounded-2xl border border-amber-100 shadow-sm">
+                        <h4 class="font-serif font-bold text-xs sm:text-sm text-amber-900 uppercase tracking-wider mb-2.5">Keunggulan & Penawaran Harga</h4>
+                        <ul class="space-y-1.5 text-xs sm:text-sm text-amber-900/80 list-disc list-inside">
+                            <li>Desain aesthetic, penuh aksi, dan anti-mainstream setara web developer profesional.</li>
+                            <li>Sangat praktis dibagikan melalui satu tautan saja via WhatsApp, Instagram, atau Telegram.</li>
+                            <li>Paket hemat berkualitas tinggi dengan harga yang sangat ramah di kantong.</li>
+                        </ul>
+                    </div>
+                `;
+            } else if (p.name === "AstroLuv") {
                 extra = `
                     <p class="text-xs sm:text-sm text-slate-700 mb-6 leading-relaxed font-medium">${p.intro}</p>
                     
